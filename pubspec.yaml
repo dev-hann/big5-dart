@@ -8,8 +8,7 @@ author: Douasin <ray92105@gmail.com>
 homepage: https://github.com/douasin/big5-dart
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
-
+  sdk: ">=2.16.2 <3.0.0"
 dependencies:
   flutter:
     sdk: flutter

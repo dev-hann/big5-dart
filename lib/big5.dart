@@ -81,18 +81,26 @@ class Big5 {
   }
 
   static List<int> _big5TransformEncode(String src) {
-    var runes = Runes(src).toList();
-
-    var r = 0;
-    var size = 0;
-    List<int> dst = [];
+    final runes = Runes(src).toList();
+    final runesLen = runes.length;
+    int r = 0;
+    int size = 0;
+    final List<int> dst = [];
 
     void write2(int r) {
       dst.add(r >> 8);
       dst.add(r % 256);
     }
 
-    for (var nSrc = 0; nSrc < runes.length; nSrc += size) {
+    int getValue(Map<int, int> map, int key) {
+      return map[key] ?? 0;
+    }
+
+    bool isContains(int low, int value, int high) {
+      return low <= value && r < high;
+    }
+
+    for (var nSrc = 0; nSrc < runesLen; nSrc += size) {
       r = runes[nSrc];
 
       // Decode a 1-byte rune.
@@ -107,50 +115,50 @@ class Big5 {
       }
 
       if (r >= RUNE_SELF) {
-        if (encode0Low <= r && r < encode0High) {
-          r = _encode0[r - encode0Low];
+        if (isContains(encode0Low, r, encode0High)) {
+          r = getValue(_encode0, r - encode0Low);
           if (r != 0) {
             write2(r);
             continue;
           }
-        } else if (encode1Low <= r && r < encode1High) {
-          r = _encode1[r - encode1Low];
+        } else if (isContains(encode1Low, r, encode1High)) {
+          r = getValue(_encode1, r - encode1Low);
           if (r != 0) {
             write2(r);
             continue;
           }
-        } else if (encode2Low <= r && r < encode2High) {
-          r = _encode2[r - encode2Low];
+        } else if (isContains(encode2Low, r, encode2High)) {
+          r = getValue(_encode2, r - encode2Low);
           if (r != 0) {
             write2(r);
             continue;
           }
-        } else if (encode3Low <= r && r < encode3High) {
-          r = _encode3[r - encode3Low];
+        } else if (isContains(encode3Low, r, encode3High)) {
+          r = getValue(_encode3, r - encode3Low);
           if (r != 0) {
             write2(r);
             continue;
           }
-        } else if (encode4Low <= r && r < encode4High) {
-          r = _encode4[r - encode4Low];
+        } else if (isContains(encode4Low, r, encode4High)) {
+          r = getValue(_encode4, r - encode4Low);
           if (r != 0) {
             write2(r);
             continue;
           }
-        } else if (encode5Low <= r && r < encode5High) {
-          r = _encode5[r - encode5Low];
+        } else if (isContains(encode5Low, r, encode5High)) {
+          r = getValue(_encode5, r - encode5Low);
           if (r != 0) {
             write2(r);
             continue;
           }
-        } else if (encode6Low <= r && r < encode6High) {
-          r = _encode6[r - encode6Low];
+        } else if (isContains(encode6Low, r, encode6High)) {
+          r = getValue(_encode6, r - encode6Low);
           if (r != 0) {
             write2(r);
             continue;
           }
-        } else if (encode7Low <= r && r < encode7High) {
-          r = _encode7[r - encode7Low];
+        } else if (isContains(encode7Low, r, encode7High)) {
+          r = getValue(_encode7, r - encode7Low);
           if (r != 0) {
             write2(r);
             continue;

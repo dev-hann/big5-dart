@@ -13725,7 +13725,6 @@ const Map<int, int> _decodeMap = {
 // encode5:   432 entries for runes in [194597, 195029).
 // encode6:   263 entries for runes in [ 63751,  64014).
 // encode7:     1 entries for runes in [175615, 175616).
-
 const int encode0Low = 131105;
 const int encode0High = 173738;
 

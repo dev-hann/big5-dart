@@ -52,5 +52,17 @@ void main() {
       109
     ]);
   });
+
+  group("Test Compare on Item", (){
+
+  });
 }
 
+class _TestModel {
+  const _TestModel({
+    required this.index,
+    required this.name,
+  });
+  final int index;
+  final String name;
+}
